@@ -1,0 +1,24 @@
+project_path="$1"
+
+if [ -z $project_path ]; then
+    project_path='.'
+elif [ -d $project_path ]; then
+    echo "$1 exists. Quitting with no changes."
+    exit
+fi
+
+echo "Project path: `$project_path`... creating files."
+
+mkdir $project_path
+mkdir $project_path/app
+mkdir $project_path/app/templates
+mkdir $project_path/app/static    
+touch $project_path/run.py
+touch $project_path/config.py
+touch $project_path/app/__init__.py
+
+
+
+env/bin/pip install flask
+env/bin/pip install flask-sqlalchemy
+env/bin/pip install flask-wtf
